@@ -14,16 +14,30 @@ void calc(stack_t **head_ref, unsigned int ln, char *op)
 		print_error(7, ln, op);
 
 	(*head_ref) = (*head_ref)->next;
+
 	if (strcmp(op, "add") == 0)
 		result = (*head_ref)->n + (*head_ref)->prev->n;
+
 	if (strcmp(op, "sub") == 0)
 		result = (*head_ref)->n - (*head_ref)->prev->n;
+
 	if (strcmp(op, "mul") == 0)
 		result = (*head_ref)->n * (*head_ref)->prev->n;
+
 	if (strcmp(op, "div") == 0)
+	{
+		if ((*head_ref)->n == 0)
+			print_error(8, ln);
 		result = (*head_ref)->n / (*head_ref)->prev->n;
+	}
+
 	if (strcmp(op, "mod") == 0)
+	{
+		if ((*head_ref)->n == 0)
+			print_error(8, ln);
 		result = (*head_ref)->n % (*head_ref)->prev->n;
+	}
+
 	(*head_ref)->n = result;
 	free((*head_ref)->prev);
 	(*head_ref)->prev = NULL;
