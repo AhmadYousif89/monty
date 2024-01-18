@@ -22,14 +22,14 @@ void run_monty_op(op_func op_f, char *op, char *value, int ln, int mode)
 	/* Handle the "Push" op */
 	if (value == NULL)
 		print_error(4, ln);
-	/* Ignore the (-) sign in values like (-10) */
+
 	if (value[0] == '-')
 		value++, flag = -flag;
-	/* Check value for none digits */
+
 	for (i = 0; value[i] != '\0'; i++)
 		if (isdigit(value[i]) == 0)
 			print_error(4, ln);
-	/* Create the new node */
+
 	node = create_node(atoi(value) * flag);
 	/* Switch insertion mode */
 	if (mode == 0)
