@@ -24,12 +24,14 @@ stack_t *create_node(int n)
  * add_to_stack - Adds a node to the stack.
  * @new_node: Pointer to the new node.
  * @ln: the line number of the opcode (unused parameter).
+ * @op: pointer to the string containing the opcode (unused parameter).
  */
-void add_to_stack(stack_t **new_node, unsigned int ln)
+void add_to_stack(stack_t **new_node, unsigned int ln, char *op)
 {
 	stack_t *temp;
 
 	UNUSED(ln);
+	UNUSED(op);
 	if (new_node == NULL || *new_node == NULL)
 		exit(EXIT_FAILURE);
 
@@ -49,12 +51,14 @@ void add_to_stack(stack_t **new_node, unsigned int ln)
  * add_to_queue - Adds a node to the queue.
  * @new_node: Pointer to the new node.
  * @ln: line number of the opcode (unused parameter).
+ * @op: pointer to the string containing the opcode (unused parameter).
  */
-void add_to_queue(stack_t **new_node, unsigned int ln)
+void add_to_queue(stack_t **new_node, unsigned int ln, char *op)
 {
 	stack_t *temp;
 
 	UNUSED(ln);
+	UNUSED(op);
 	if (new_node == NULL || *new_node == NULL)
 		exit(EXIT_FAILURE);
 

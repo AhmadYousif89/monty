@@ -16,7 +16,7 @@ void run_monty_op(op_func op_f, char *op, char *value, int ln, int mode)
 	/* Run all operations execpt the "Push" op */
 	if (strcmp(op, "push") != 0)
 	{
-		op_f(&head, ln);
+		op_f(&head, ln, op);
 		return;
 	}
 	/* Handle the "Push" op */
@@ -33,9 +33,9 @@ void run_monty_op(op_func op_f, char *op, char *value, int ln, int mode)
 	node = create_node(atoi(value) * flag);
 	/* Switch insertion mode */
 	if (mode == 0)
-		add_to_stack(&node, ln);
+		add_to_stack(&node, ln, op);
 	if (mode == 1)
-		add_to_queue(&node, ln);
+		add_to_queue(&node, ln, op);
 }
 
 /**
@@ -57,14 +57,15 @@ void get_op(char *opcode, char *value, int ln, int mode)
 		{"swap", swap},
 		{"rotr", rotr},
 		{"rotl", rotl},
-		{"nop", nop},
+		{"add", calc},
+		{"div", calc},
+		{"mod", calc},
+		{"sub", calc},
+		{"mul", calc},
 		{"pop", pop},
-		{"add", add},
-		{"div", divid},
-		{"mod", modules},
-		{"sub", subtract},
-		{"mul", multiply},
+		{"nop", nop},
 		{NULL, NULL}};
+
 	/* Handle comments */
 	if (opcode[0] == '#' || (opcode[0] == '/' && opcode[1] == '/'))
 		return;
@@ -76,7 +77,7 @@ void get_op(char *opcode, char *value, int ln, int mode)
 			is_error = 0;
 			break; /* Exit loop on match */
 		}
-	/* Unkonwn opcode */
-	if (is_error)
+
+	if (is_error) /* Unkonwn opcode */
 		print_error(2, ln, opcode);
 }

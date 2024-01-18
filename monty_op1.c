@@ -1,102 +1,121 @@
 #include "monty.h"
 
 /**
- * add - Sum the top two numbers on the stack or queue.
- * @head_ref: pointer to the head of the stack or queue.
- * @ln: the line number of of the opcode.
+ * calc - Perform arithmatic operations based on opcode
+ * @head_ref: pointer to the head pointer of the stack.
+ * @ln: line number of the opcode.
+ * @op: pointer to the string containing the opcode.
  */
-void add(stack_t **head_ref, unsigned int ln)
+void calc(stack_t **head_ref, unsigned int ln, char *op)
 {
-	int res = 0;
+	int result = 0;
 
 	if (head_ref == NULL || *head_ref == NULL || (*head_ref)->next == NULL)
-		print_error(7, ln, "add");
+		print_error(7, ln, op);
 
 	(*head_ref) = (*head_ref)->next;
-	res = (*head_ref)->n + (*head_ref)->prev->n;
-	(*head_ref)->n = res;
+	if (strcmp(op, "add") == 0)
+		result = (*head_ref)->n + (*head_ref)->prev->n;
+	if (strcmp(op, "sub") == 0)
+		result = (*head_ref)->n - (*head_ref)->prev->n;
+	if (strcmp(op, "mul") == 0)
+		result = (*head_ref)->n * (*head_ref)->prev->n;
+	if (strcmp(op, "div") == 0)
+		result = (*head_ref)->n / (*head_ref)->prev->n;
+	if (strcmp(op, "mod") == 0)
+		result = (*head_ref)->n % (*head_ref)->prev->n;
+	(*head_ref)->n = result;
 	free((*head_ref)->prev);
 	(*head_ref)->prev = NULL;
 }
 
 /**
- * subtract - Subtract the top two numbers on the stack or queue.
- * @head_ref: pointer to the head of the stack or queue.
- * @ln: the line number of of the opcode.
+ * print_all - Print all elements on the stack.
+ * @head_ref: pointer to the head pointer of the stack.
+ * @ln: line number of the opcode (unused parameter).
+ * @op: pointer to the string containing the opcode (unused parameter).
  */
-void subtract(stack_t **head_ref, unsigned int ln)
+void print_all(stack_t **head_ref, unsigned int ln, char *op)
 {
-	int res = 0;
+	stack_t *temp;
 
-	if (head_ref == NULL || *head_ref == NULL || (*head_ref)->next == NULL)
-		print_error(7, ln, "sub");
+	UNUSED(ln);
+	UNUSED(op);
+	if (head_ref == NULL)
+		exit(EXIT_FAILURE);
 
-	(*head_ref) = (*head_ref)->next;
-	res = (*head_ref)->n - (*head_ref)->prev->n;
-	(*head_ref)->n = res;
-	free((*head_ref)->prev);
-	(*head_ref)->prev = NULL;
+	temp = *head_ref;
+	while (temp)
+	{
+		printf("%d\n", temp->n);
+		temp = temp->next;
+	}
 }
 
 /**
- * divid - Divid the top two numbers on the stack or queue.
- * @head_ref: pointer to the head of the stack or queue.
- * @ln: the line number of of the opcode.
+ * print_top - Prints the top node of the stack.
+ * @head_ref: pointer to the head pointer of the stack.
+ * @ln: the line number of the opcode.
+ * @op: pointer to the string containing the opcode (unused parameter).
  */
-void divid(stack_t **head_ref, unsigned int ln)
+void print_top(stack_t **head_ref, unsigned int ln, char *op)
 {
-	int res = 0;
+	UNUSED(op);
+	if (head_ref == NULL || *head_ref == NULL)
+		print_error(5, ln);
 
-	if (head_ref == NULL || *head_ref == NULL || (*head_ref)->next == NULL)
-		print_error(7, ln, "div");
-
-	if ((*head_ref)->n == 0)
-		print_error(8, ln);
-
-	(*head_ref) = (*head_ref)->next;
-	res = (*head_ref)->n / (*head_ref)->prev->n;
-	(*head_ref)->n = res;
-	free((*head_ref)->prev);
-	(*head_ref)->prev = NULL;
+	printf("%d\n", (*head_ref)->n);
 }
 
 /**
- * multiply - Multiply the top two numbers on the stack or queue.
- * @head_ref: pointer to the head of the stack or queue.
- * @ln: the line number of of the opcode.
+ * print_char - Prints the Ascii value of the top node (n).
+ * @head_ref: pointer to the head pointer of the stack.
+ * @ln: the line number of the opcode.
+ * @op: pointer to the string containing the opcode (unused parameter).
  */
-void multiply(stack_t **head_ref, unsigned int ln)
+void print_char(stack_t **head_ref, unsigned int ln, char *op)
 {
-	int res = 0;
+	int ascii;
 
-	if (head_ref == NULL || *head_ref == NULL || (*head_ref)->next == NULL)
-		print_error(7, ln, "mul");
+	UNUSED(op);
+	if (head_ref == NULL || *head_ref == NULL)
+		print_error(10, ln);
 
-	(*head_ref) = (*head_ref)->next;
-	res = (*head_ref)->n * (*head_ref)->prev->n;
-	(*head_ref)->n = res;
-	free((*head_ref)->prev);
-	(*head_ref)->prev = NULL;
+	ascii = (*head_ref)->n;
+	if (ascii < 0 || ascii > 127)
+		print_error(9, ln);
+
+	printf("%c\n", ascii);
 }
 
 /**
- * modules - Modules the top two numbers on the stack or queue.
- * @head_ref: pointer to the head of the stack or queue.
- * @ln: the line number of of the opcode.
+ * print_str - Prints a string representation of all elements.
+ * @head_ref: pointer to the head pointer of the stack.
+ * @ln: the line number of the opcode (unused parameter).
+ * @op: pointer to the string containing the opcode (unused parameter).
  */
-void modules(stack_t **head_ref, unsigned int ln)
+void print_str(stack_t **head_ref, unsigned int ln, char *op)
 {
-	int res = 0;
+	int ascii;
+	stack_t *temp;
 
-	if (head_ref == NULL || *head_ref == NULL || (*head_ref)->next == NULL)
-		print_error(7, ln, "mod");
+	UNUSED(op);
+	UNUSED(ln);
+	if (head_ref == NULL || *head_ref == NULL)
+	{
+		printf("\n");
+		return;
+	}
 
-	if ((*head_ref)->n == 0)
-		print_error(8, ln);
+	temp = *head_ref;
+	while (temp)
+	{
+		ascii = temp->n;
+		if (ascii <= 0 || ascii > 127)
+			break;
+		printf("%c", ascii);
+		temp = temp->next;
+	}
 
-	(*head_ref) = (*head_ref)->next;
-	res = (*head_ref)->n % (*head_ref)->prev->n;
-	(*head_ref)->n = res;
-	free((*head_ref)->prev);
-	(*head_ref)->prev = NULL;
+	printf("\n");
 }
