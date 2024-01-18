@@ -40,10 +40,10 @@ extern stack_t *head;
 typedef struct instruction_s
 {
 	char *opcode;
-	void (*f)(stack_t **stack, unsigned int line_number);
+	void (*f)(stack_t **stack, unsigned int ln, char *op);
 } instruction_t;
 
-typedef void (*op_func)(stack_t **, unsigned int ln);
+typedef void (*op_func)(stack_t **, unsigned int, char *);
 
 /* PROTOTYPES */
 
@@ -56,25 +56,21 @@ void get_op(char *, char *, int, int);
 void run_monty_op(op_func, char *, char *, int, int);
 
 stack_t *create_node(int);
-void add_to_stack(stack_t **, unsigned int ln);
-void add_to_queue(stack_t **, unsigned int ln);
+void add_to_stack(stack_t **, unsigned int, char *);
+void add_to_queue(stack_t **, unsigned int, char *);
 void free_stack(void);
 
-void pop(stack_t **, unsigned int ln);
-void nop(stack_t **, unsigned int ln);
-void swap(stack_t **, unsigned int ln);
-void rotl(stack_t **, unsigned int ln);
-void rotr(stack_t **, unsigned int ln);
-void add(stack_t **, unsigned int ln);
-void divid(stack_t **, unsigned int ln);
-void subtract(stack_t **, unsigned int ln);
-void multiply(stack_t **, unsigned int ln);
-void modules(stack_t **, unsigned int ln);
+void pop(stack_t **, unsigned int, char *);
+void nop(stack_t **, unsigned int, char *);
+void swap(stack_t **, unsigned int, char *);
+void rotl(stack_t **, unsigned int, char *);
+void rotr(stack_t **, unsigned int, char *);
+void calc(stack_t **, unsigned int, char *);
+void print_all(stack_t **, unsigned int, char *);
+void print_top(stack_t **, unsigned int, char *);
+void print_char(stack_t **, unsigned int, char *);
+void print_str(stack_t **, unsigned int, char *);
 
-void print_all(stack_t **, unsigned int ln);
-void print_top(stack_t **, unsigned int ln);
-void print_char(stack_t **, unsigned int ln);
-void print_str(stack_t **, unsigned int ln);
 void print_error(int, ...);
 
 #endif
