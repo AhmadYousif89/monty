@@ -7,7 +7,6 @@
 void print_error(int error_code, ...)
 {
 	va_list val;
-	int ln;
 
 	va_start(val, error_code);
 	if (error_code == 1)
