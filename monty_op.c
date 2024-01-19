@@ -49,11 +49,12 @@ void get_op(char *opcode, char *value, int ln, int mode)
 {
 	int i = 0, is_error = 1;
 	instruction_t op_list[] = {
-		{"push", add_to_stack},
-		{"pchar", print_char},
-		{"pstr", print_str},
 		{"pint", print_top},
 		{"pall", print_all},
+		{"pstr", print_str},
+		{"pchar", print_char},
+		{"prevs", print_str_reverse},
+		{"push", add_to_stack},
 		{"swap", swap},
 		{"rotr", rotr},
 		{"rotl", rotl},
