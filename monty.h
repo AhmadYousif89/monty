@@ -70,6 +70,7 @@ void print_all(stack_t **, unsigned int, char *);
 void print_top(stack_t **, unsigned int, char *);
 void print_char(stack_t **, unsigned int, char *);
 void print_str(stack_t **, unsigned int, char *);
+void print_str_reverse(stack_t **, unsigned int, char *);
 
 void print_error(int, ...);
 
