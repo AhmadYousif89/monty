@@ -3,6 +3,7 @@
 /**
  * print_error - Print error messages according to their error code
  * @error_code: the error code number.
+ * @...: variable arguments based on the error_code.
  */
 void print_error(int error_code, ...)
 {
