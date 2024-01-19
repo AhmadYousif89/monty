@@ -27,7 +27,7 @@ void print_error(int error_code, ...)
 		fprintf(stderr, "L%d: can't pop an empty stack\n", va_arg(val, int));
 	if (error_code == 7)
 	{
-		ln = va_arg(val, unsigned int);
+		ln = va_arg(val, int);
 		fprintf(stderr, "L%d: can't %s, stack too short\n", ln, va_arg(val, char *));
 	}
 	if (error_code == 8)

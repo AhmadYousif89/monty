@@ -27,9 +27,3 @@ rotr			// Move last node to the top of the stack
 pstr			// Print all values as a string (outputs: Holle)
 rotl			// Move top node to the bottom of the stack
 pstr			// Print all values as a string (outputs: olleH)
-pop
-pop
-pop
-pop
-pop
-pstr
