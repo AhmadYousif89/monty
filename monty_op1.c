@@ -26,14 +26,14 @@ void calc(stack_t **head_ref, unsigned int ln, char *op)
 
 	if (strcmp(op, "div") == 0)
 	{
-		if ((*head_ref)->n == 0)
+		if ((*head_ref)->prev->n == 0)
 			print_error(8, ln);
 		result = (*head_ref)->n / (*head_ref)->prev->n;
 	}
 
 	if (strcmp(op, "mod") == 0)
 	{
-		if ((*head_ref)->n == 0)
+		if ((*head_ref)->prev->n == 0)
 			print_error(8, ln);
 		result = (*head_ref)->n % (*head_ref)->prev->n;
 	}
