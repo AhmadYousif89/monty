@@ -133,3 +133,55 @@ void print_str(stack_t **head_ref, unsigned int ln, char *op)
 
 	printf("\n");
 }
+
+/**
+ * print_str_reverse - Prints a string representation of all elements.
+ * @head_ref: pointer to the head pointer of the stack.
+ * @ln: the line number of the opcode (unused parameter).
+ * @op: pointer to the string containing the opcode (unused parameter).
+ */
+void print_str_reverse(stack_t **head_ref, unsigned int ln, char *op)
+{
+	int i, length = 0, ascii = 0;
+	char *str;
+	stack_t *temp;
+
+	UNUSED(op);
+	if (head_ref == NULL || *head_ref == NULL)
+	{
+		printf("\n");
+		return;
+	}
+
+	temp = *head_ref;
+	while (temp)
+	{
+		ascii = temp->n;
+		if (ascii > 0 && ascii <= 127)
+			length++;
+		else
+			break;
+		temp = temp->next;
+	}
+
+	str = malloc((length + 1) * sizeof(char));
+	if (str == NULL)
+		print_error(3, ln);
+
+	temp = *head_ref;
+	while (temp)
+	{
+		ascii = temp->n;
+		if (ascii <= 0 || ascii > 127)
+			break;
+		*str++ = (char)ascii;
+		temp = temp->next;
+	}
+	*str = '\0';
+	str -= length;
+
+	for (i = length - 1; i >= 0; i--)
+		printf("%c", str[i]);
+
+	printf("\n");
+}
