@@ -5,7 +5,7 @@
 push 10				// Push 10 onto the stack
 push -20			// Push 20 onto the stack
 pall				// Print all values (outputs: 20 10) 
-add					// Add the top two values (10 + 20 = 30)
+add					// Add the top two values (10 + -20 = -10)
 pint				// Print the top value (outputs: 30) after replacing the top two values
 pop					// Remove the top and only value (30)
 push 5				// Push 5 onto the stack
