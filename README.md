@@ -30,7 +30,7 @@ so make sure you have the gcc compiler installed.
 
 To run the program simply type:
  ```bash
-./monty <monty file>
+./monty <monty_file>
 ```
 
 ### Available operation codes:
@@ -41,8 +41,6 @@ To run the program simply type:
 |stack     |An opcode that sets the insertion mode to a Stack (LIFO). This is the default behavior.|
 |queue     |An opcode that sets the insertion mode to a Queue (FIFO).|
 |push      |Pushes an element onto the stack. e.g (push 1 onto the stack)|
-|pint      |Prints the value at the top of the stack.|
-|pall      |Prints all the values on the stack, starting from the head of the stack.|
 |pop       |Removes an element from the stack or queue.|
 |nop       |This opcode doesn't do anything.|
 |swap      |Swaps the top to elements of the stack.|
@@ -51,6 +49,8 @@ To run the program simply type:
 |div       |Divides the top two elements of the stack from the second top element. The result is then stored in the second node, and the first node is removed.|
 |mul       |Multiplies the top two elements of the stack from the second top element. The result is then stored in the second node, and the first node is removed.|
 |mod       |Computes the remainder of the top two elements of the stack from the second top element. The result is then stored in the second node, and the first node is removed.|
+|pall      |Prints all the values on the stack, starting from the head of the stack.|
+|pint      |Prints the value at the top of the stack.|
 |pchar     |Prints a character representation for the number stored in the top node of the stack. e.g (H)|
 |pstr      |Prints a string representation of all the numbers stored in the stack from the top. e.g (olleH)|
 |prevs     |Prints a string representation of all the numbers stored in the stack in reverse order. e.g (Hello)|
