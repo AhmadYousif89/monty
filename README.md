@@ -73,6 +73,14 @@ and the output on the terminal will look like this:
 
 ![m2](https://github.com/AhmadYousif89/monty/assets/90717578/c1e1130f-3d59-483b-a7d1-a22080b72d71)
 
+more opcode tests:
+
+![mi2](https://github.com/AhmadYousif89/monty/assets/90717578/2cfa1474-fe75-4b7e-9365-3e17e5d6596b)
+
+and the results are
+
+![mo2](https://github.com/AhmadYousif89/monty/assets/90717578/b8284aac-73b2-4a34-9ac7-478411600f9d)
+
 
 #### Aurthor
 
