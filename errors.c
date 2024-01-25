@@ -38,6 +38,7 @@ void print_error(int error_code, ...)
 	if (error_code == 10)
 		fprintf(stderr, "L%d: can't pchar, stack empty\n", va_arg(val, int));
 
+	va_end(val);
 	free_stack();
 	exit(EXIT_FAILURE);
 }
