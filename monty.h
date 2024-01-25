@@ -50,9 +50,9 @@ typedef void (*op_func)(stack_t **, unsigned int, char *);
 void validate_args(int);
 void open_monty(char *);
 void read_monty(FILE *);
-int parse_line(char *, int, int);
+int parse_line(char *, int, int, FILE *);
 
-void get_op(char *, char *, int, int);
+void get_op(char *, char *, int, int, FILE *);
 void run_monty_op(op_func, char *, char *, int, int);
 
 stack_t *create_node(int);
