@@ -37,10 +37,10 @@ void read_monty(FILE *fd)
 {
 	size_t len = 0;
 	char *buffer = NULL;
-	int line_number = 1, mode = 0;
+	int ln = 1, mode = 0;
 
 	while (getline(&buffer, &len, fd) != -1)
-		mode = parse_line(buffer, line_number++, mode);
+		mode = parse_line(buffer, ln++, mode, fd);
 
 	free(buffer);
 }
@@ -50,9 +50,10 @@ void read_monty(FILE *fd)
  * @buffer: line from the monty file
  * @ln: the instruction line number
  * @mode: insert mode. 0 = stack, 1 = queue.
+ * @fd: the file descriptor of the monty file.
  * Return: Returns 0 if the opcode is stack. 1 if queue.
  */
-int parse_line(char *buffer, int ln, int mode)
+int parse_line(char *buffer, int ln, int mode, FILE *fd)
 {
 	char *opcode, *value;
 	const char *delim = "\n \t";
@@ -71,7 +72,7 @@ int parse_line(char *buffer, int ln, int mode)
 		return (1);
 
 	value = strtok(NULL, delim);
-	get_op(opcode, value, ln, mode);
+	get_op(opcode, value, ln, mode, fd);
 
 	return (mode);
 }
