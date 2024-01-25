@@ -184,4 +184,5 @@ void print_str_reverse(stack_t **head_ref, unsigned int ln, char *op)
 		printf("%c", str[i]);
 
 	printf("\n");
+	free(str);
 }
