@@ -44,8 +44,9 @@ void run_monty_op(op_func op_f, char *op, char *value, int ln, int mode)
  * @value: argument of opcode "Push"
  * @mode: insertion mode. 0 = stack, 1 = queue.
  * @ln: line numeber for the operation.
+ * @fd: the file descriptor of the monty file.
  */
-void get_op(char *opcode, char *value, int ln, int mode)
+void get_op(char *opcode, char *value, int ln, int mode, FILE *fd)
 {
 	int i = 0, is_error = 1;
 	instruction_t op_list[] = {
@@ -80,5 +81,8 @@ void get_op(char *opcode, char *value, int ln, int mode)
 		}
 
 	if (is_error) /* Unkonwn opcode */
+	{
+		fclose(fd);
 		print_error(2, ln, opcode);
+	}
 }
